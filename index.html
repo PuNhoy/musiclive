@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoundPulse - Premium Music Streaming</title>
-  <!-- Google Fonts: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="/src/css/style.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundKH</title>
+    <link rel="icon" type="image/png" href="/src/assets/image/logo.jpg"
+      sizes="32x32">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -41,718 +45,1168 @@
       }
     }
   </script>
- 
-</head>
-<body class="bg-brand-dark text-slate-100 font-sans antialiased h-screen overflow-hidden flex flex-col select-none">
 
-  <!-- AUDIO ELEMENT -->
-  <audio id="audio-engine" preload="metadata"></audio>
+  </head>
+  <body
+    class="bg-brand-dark text-slate-100 font-sans antialiased h-screen overflow-hidden flex flex-col select-none">
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+    <!-- AUDIO ELEMENT -->
+    <audio id="audio-engine" preload="metadata"></audio>
 
-  <!-- MAIN APP CONTAINER (Sidebar + Content) -->
-  <div class="flex-1 flex overflow-hidden relative">
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container"
+      class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- ==================== LEFT SIDEBAR ==================== -->
-    <aside class="w-64 bg-slate-950/80 border-r border-brand-border flex-col justify-between hidden md:flex shrink-0 backdrop-blur-xl z-20">
-      <div>
-        <!-- Brand Header -->
-        <div class="p-6 flex items-center justify-between border-b border-brand-border">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-violet-500/25">
-              <!-- Sound wave logo SVG -->
-              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+    <!-- MAIN APP CONTAINER (Sidebar + Content) -->
+    <div class="flex-1 flex overflow-hidden relative">
+
+      <!-- ==================== LEFT SIDEBAR ==================== -->
+      <aside
+        class="w-64 bg-slate-950/80 border-r border-brand-border flex-col justify-between hidden md:flex shrink-0 backdrop-blur-xl z-20">
+        <div>
+          <!-- Brand Header -->
+          <div
+            class="p-6 flex items-center justify-between border-b border-brand-border">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-violet-500/25">
+                <!-- Sound wave logo SVG -->
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.2"
+                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
+              </div>
+              <div>
+                <span
+                  class="font-extrabold cursive text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-violet-400 bg-clip-text text-transparent">Stap</span>
+                <p
+                  class="text-[10px] text-cyan-400 font-semibold uppercase tracking-wider">Hi-Fi
+                  Stream</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Links -->
+          <nav class="p-4 space-y-1.5">
+            <p
+              class="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Explore</p>
+
+            <button id="nav-btn-home" onclick="switchTab('home')"
+              class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 bg-gradient-to-r from-violet-600/20 to-transparent text-white border-l-2 border-violet-500">
+              <svg class="w-5 h-5 text-violet-400" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span>Home</span>
+            </button>
+
+            <button id="nav-btn-search" onclick="focusSearch()"
+              class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span>Search</span>
+            </button>
+
+            <button id="nav-btn-favorites" onclick="switchTab('favorites')"
+              class="nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
+              <div class="flex items-center gap-3.5">
+                <svg class="w-5 h-5 text-rose-500" fill="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+                <span>Favorites</span>
+              </div>
+              <span id="sidebar-fav-count"
+                class="text-xs bg-slate-800 text-slate-300 font-semibold px-2 py-0.5 rounded-full">0</span>
+            </button>
+
+            <button id="nav-btn-queue" onclick="toggleQueuePanel()"
+              class="nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
+              <div class="flex items-center gap-3.5">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                <span>Play Queue</span>
+              </div>
+              <span id="sidebar-queue-count"
+                class="text-xs bg-violet-900/60 text-violet-300 font-semibold px-2 py-0.5 rounded-full">0</span>
+            </button>
+
+            <button id="nav-btn-nowplaying" onclick="toggleNowPlayingModal()"
+              class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Now Playing</span>
+            </button>
+          </nav>
+
+          <!-- Genre Quick Filters in Sidebar -->
+          <div class="px-6 py-4">
+            <p
+              class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2.5">Featured
+              Genres</p>
+            <div class="flex flex-wrap gap-1.5" id="sidebar-genres">
+              <!-- Dynamically populated or static fast buttons -->
+              <button onclick="setGenreFilter('Synthwave')"
+                class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Synthwave</button>
+              <button onclick="setGenreFilter('Chill')"
+                class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Chill
+                / Lo-Fi</button>
+              <button onclick="setGenreFilter('Electronic')"
+                class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Electronic</button>
+              <button onclick="setGenreFilter('Pop')"
+                class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Pop</button>
+              <button onclick="setGenreFilter('Rock')"
+                class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Rock</button>
+              <button onclick="setGenreFilter('Ambient')"
+                class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Ambient</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Bottom Card / Mini Player Widget -->
+        <div class="p-4 border-t border-brand-border">
+          <div onclick="toggleNowPlayingModal()"
+            class="cursor-pointer bg-slate-900/90 hover:bg-slate-800/90 border border-brand-border rounded-xl p-3 flex items-center gap-3 transition group">
+            <div id="sidebar-cover-thumb"
+              class="w-11 h-11 rounded-lg overflow-hidden shrink-0 bg-slate-800 flex items-center justify-center">
+              <!-- default cover -->
+              <svg class="w-6 h-6 text-slate-600" fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                  d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 id="sidebar-track-title"
+                class="text-xs font-bold text-white truncate group-hover:text-violet-400 transition">Select
+                a song</h4>
+              <p id="sidebar-track-artist"
+                class="text-[11px] text-slate-400 truncate">Ready to stream</p>
+            </div>
+            <div id="sidebar-live-eq"
+              class="flex items-end gap-0.5 h-3.5 hidden">
+              <span class="w-0.5 bg-violet-400 rounded-full eq-bar-1"></span>
+              <span class="w-0.5 bg-cyan-400 rounded-full eq-bar-2"></span>
+              <span class="w-0.5 bg-pink-400 rounded-full eq-bar-3"></span>
+            </div>
+          </div>
+
+          <!-- Keyboard Shortcut Hint Button -->
+          <button onclick="toggleShortcutsModal()"
+            class="mt-3 w-full flex items-center justify-center gap-2 py-1.5 text-[11px] text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 rounded-lg transition">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+            <span>Shortcuts Guide (Press ?)</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- ==================== MAIN CONTENT AREA ==================== -->
+      <main
+        class="flex-1 flex flex-col overflow-y-auto bg-gradient-to-b from-[#0e1220] to-[#07090e] pb-28 md:pb-24">
+
+        <!-- Top Sticky Navigation & Search Bar -->
+        <header
+          class="sticky top-0 z-10 backdrop-blur-xl bg-slate-950/70 border-b border-brand-border px-4 md:px-8 py-3.5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+
+          <!-- Left: Search input -->
+          <div class="relative flex-1 max-w-lg">
+            <div
+              class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search by title, artist, or genre... (Press / to search)"
+              class="w-full pl-10 pr-9 py-2 bg-slate-900/90 hover:bg-slate-900 focus:bg-slate-900 border border-slate-800 focus:border-violet-500 rounded-xl text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-violet-500 transition shadow-inner"
+              autocomplete="off">
+            <button id="clear-search-btn" onclick="clearSearch()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white hidden">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Right: Action Bar (View mode toggle, Random play, Shortcuts) -->
+          <div
+            class="flex items-center justify-between md:justify-end gap-2 shrink-0">
+            <!-- Quick Shuffle Play All button -->
+            <button onclick="playRandomSong()"
+              class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-violet-700/20 active:scale-95 transition">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>Surprise Me</span>
+            </button>
+
+            <!-- View Mode Toggle (Grid vs List) -->
+            <div
+              class="flex items-center bg-slate-900 p-0.5 rounded-xl border border-slate-800">
+              <button id="view-grid-btn" onclick="setViewMode('grid')"
+                title="Grid View"
+                class="p-1.5 rounded-lg text-white bg-slate-800 transition">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+              </button>
+              <button id="view-list-btn" onclick="setViewMode('list')"
+                title="List View"
+                class="p-1.5 rounded-lg text-slate-400 hover:text-white transition">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Shortcuts Dialog button on mobile/desktop -->
+            <button onclick="toggleShortcutsModal()"
+              title="Keyboard shortcuts (?)"
+              class="p-2 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-800 rounded-xl border border-slate-800 transition">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Content Container -->
+        <div class="px-4 md:px-8 py-6 space-y-6">
+
+          <!-- ==================== HERO HIGHLIGHT BANNER ==================== -->
+          <section
+            id="hero-banner"
+            class="relative z-0 isolate overflow-hidden
+         rounded-2xl
+         bg-gradient-to-r from-violet-950/70 via-indigo-950/50 to-slate-900/80
+         border border-violet-800/20
+         p-6 md:p-8
+         shadow-2xl">
+
+            <!-- Background Glow Elements -->
+            <div
+              class="absolute -right-10 -bottom-10
+           w-60 h-60
+           bg-violet-600/10
+           rounded-full
+           blur-3xl
+           pointer-events-none"></div>
+
+            <div
+              class="absolute right-1/3 -top-10
+           w-60 h-60
+           bg-cyan-500/10
+           rounded-full
+           blur-3xl
+           pointer-events-none"></div>
+
+            <!-- Hero Content -->
+            <div
+              class="relative z-[1]
+           flex flex-col
+           md:flex-row
+           items-start md:items-center
+           justify-between
+           gap-6">
+
+              <!-- Left Content -->
+              <div class="max-w-xl space-y-3">
+
+                <!-- Badge -->
+                <div
+                  class="inline-flex items-center gap-2
+               px-3 py-1
+               rounded-full
+               bg-violet-500/10
+               border border-violet-500/20
+               text-violet-300
+               text-xs font-semibold">
+                  <span
+                    class="w-2 h-2
+                 rounded-full
+                 bg-cyan-400
+                 animate-ping"></span>
+
+                  <span>
+                    CURATED COLLECTION &bull; 16 HI-RES TRACKS
+                  </span>
+                </div>
+
+                <!-- Title -->
+                <h1
+                  class="text-2xl md:text-4xl
+               font-extrabold
+               tracking-tight
+               text-white
+               leading-tight">
+                  Immerse In Pure Sound.
+                </h1>
+
+                <!-- Description -->
+                <p
+                  class="text-sm
+               text-slate-300
+               leading-relaxed">
+                  Stream hand-crafted synthwave, chill beats,
+                  electronic pulses, and ambient landscapes.
+                  High-fidelity audio with real-time waveform
+                  visualizers, instant seeking, and queue control.
+                </p>
+
+                <!-- Buttons -->
+                <div
+                  class="pt-2
+               flex flex-wrap
+               items-center
+               gap-3">
+
+                  <button
+                    onclick="playSongByIndex(0)"
+                    class="px-5 py-2.5
+                 rounded-xl
+                 bg-gradient-to-r
+                 from-violet-500
+                 to-cyan-500
+                 hover:from-violet-400
+                 hover:to-cyan-400
+                 text-slate-950
+                 font-bold
+                 text-sm
+                 flex items-center
+                 gap-2.5
+                 shadow-lg
+                 shadow-violet-500/25
+                 active:scale-95
+                 transition">
+                    <svg
+                      class="w-4 h-4 fill-current"
+                      viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+
+                    <span>Play Starting Track</span>
+                  </button>
+
+                  <button
+                    onclick="switchTab('favorites')"
+                    class="px-4 py-2.5
+                 rounded-xl
+                 bg-slate-900/80
+                 hover:bg-slate-800
+                 text-slate-200
+                 border border-slate-700/60
+                 font-semibold
+                 text-sm
+                 flex items-center
+                 gap-2
+                 active:scale-95
+                 transition">
+                    <svg
+                      class="w-4 h-4 text-rose-500"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        d="M12 21.35l-1.45-1.32
+                 C5.4 15.36 2 12.28 2 8.5
+                 C2 5.42 4.42 3 7.5 3
+                 c1.74 0 3.41.81 4.5 2.09
+                 C13.09 3.81 14.76 3
+                 16.5 3
+                 C19.58 3 22 5.42 22 8.5
+                 c0 3.78-3.4 6.86-8.55 11.54
+                 L12 21.35z" />
+                    </svg>
+
+                    <span>View Favorites</span>
+                  </button>
+
+                </div>
+              </div>
+
+              <!-- Hero Artwork -->
+              <div
+                class="hidden lg:flex
+             items-center
+             gap-3
+             p-3
+             bg-slate-900/60
+             backdrop-blur-md
+             rounded-2xl
+             border border-white/5
+             shadow-xl">
+
+                <div
+                  id="hero-mini-disc"
+                  class="w-20 h-20
+               rounded-full
+               vinyl-grooves
+               relative
+               flex items-center
+               justify-center
+               animate-spin-slow">
+                  <div
+                    class="w-8 h-8
+                 rounded-full
+                 bg-violet-600
+                 flex items-center
+                 justify-center
+                 border-2 border-slate-900">
+                    <div
+                      class="w-2 h-2
+                   rounded-full
+                   bg-white"></div>
+                  </div>
+                </div>
+
+                <div class="pr-2">
+                  <span class="text-[10px] text-cyan-400
+                 font-bold
+                 uppercase
+                 tracking-wider">
+                    Studio Audio
+                  </span>
+
+                  <p class="text-sm font-bold text-white">
+                    SoundHelix Edition
+                  </p>
+
+                  <p class="text-xs text-slate-400">
+                    100% Royalty Free MP3
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- ==================== GENRE FILTER PILLS ==================== -->
+          <section class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <h2 id="section-title"
+                  class="text-lg font-bold text-white tracking-tight">All
+                  Tracks</h2>
+                <span id="track-count-badge"
+                  class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-semibold border border-slate-700">16</span>
+              </div>
+
+              <!-- Active filter indicator -->
+              <span id="active-filter-text"
+                class="text-xs text-slate-400 hidden">
+                Filtered by: <span id="current-filter-name"
+                  class="text-violet-400 font-semibold"></span>
+              </span>
+            </div>
+
+            <!-- Genre Buttons Strip -->
+            <div
+              class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none"
+              id="genre-pills">
+              <button onclick="setGenreFilter('All')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-md shadow-violet-600/20"
+                data-genre="All">All Genres</button>
+              <button onclick="setGenreFilter('Synthwave')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800"
+                data-genre="Synthwave">Synthwave</button>
+              <button onclick="setGenreFilter('Chill')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800"
+                data-genre="Chill">Chill / Lo-Fi</button>
+              <button onclick="setGenreFilter('Electronic')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800"
+                data-genre="Electronic">Electronic</button>
+              <button onclick="setGenreFilter('Pop')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800"
+                data-genre="Pop">Pop</button>
+              <button onclick="setGenreFilter('Rock')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800"
+                data-genre="Rock">Rock</button>
+              <button onclick="setGenreFilter('Ambient')"
+                class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800"
+                data-genre="Ambient">Ambient</button>
+            </div>
+          </section>
+
+          <!-- ==================== SONGS CONTAINER ==================== -->
+          <!-- Grid View Container -->
+          <div id="songs-grid"
+            class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+            <!-- Populated by JavaScript -->
+          </div>
+
+          <!-- List / Table View Container (Hidden by default) -->
+          <div id="songs-list" class="hidden flex-col gap-2">
+            <!-- Populated by JavaScript -->
+          </div>
+
+          <!-- EMPTY STATE (For no search matches or empty favorites) -->
+          <div id="empty-state"
+            class="hidden flex-col items-center justify-center text-center py-16 px-4 bg-slate-900/30 rounded-2xl border border-dashed border-slate-800 space-y-4">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-500">
+              <svg id="empty-icon" class="w-8 h-8" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.8"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-violet-400 bg-clip-text text-transparent">SoundPulse</span>
-              <p class="text-[10px] text-cyan-400 font-semibold uppercase tracking-wider">Hi-Fi Stream</p>
+              <h3 id="empty-title" class="text-base font-bold text-white">No
+                songs found</h3>
+              <p id="empty-subtitle"
+                class="text-xs text-slate-400 mt-1 max-w-sm">Try modifying your
+                search or switching genre filters.</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Navigation Links -->
-        <nav class="p-4 space-y-1.5">
-          <p class="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Explore</p>
-          
-          <button id="nav-btn-home" onclick="switchTab('home')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 bg-gradient-to-r from-violet-600/20 to-transparent text-white border-l-2 border-violet-500">
-            <svg class="w-5 h-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-            <span>Home</span>
-          </button>
-
-          <button id="nav-btn-search" onclick="focusSearch()" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            <span>Search</span>
-          </button>
-
-          <button id="nav-btn-favorites" onclick="switchTab('favorites')" class="nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
-            <div class="flex items-center gap-3.5">
-              <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span>Favorites</span>
-            </div>
-            <span id="sidebar-fav-count" class="text-xs bg-slate-800 text-slate-300 font-semibold px-2 py-0.5 rounded-full">0</span>
-          </button>
-
-          <button id="nav-btn-queue" onclick="toggleQueuePanel()" class="nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
-            <div class="flex items-center gap-3.5">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-              </svg>
-              <span>Play Queue</span>
-            </div>
-            <span id="sidebar-queue-count" class="text-xs bg-violet-900/60 text-violet-300 font-semibold px-2 py-0.5 rounded-full">0</span>
-          </button>
-
-          <button id="nav-btn-nowplaying" onclick="toggleNowPlayingModal()" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all duration-200">
-            <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <span>Now Playing</span>
-          </button>
-        </nav>
-
-        <!-- Genre Quick Filters in Sidebar -->
-        <div class="px-6 py-4">
-          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2.5">Featured Genres</p>
-          <div class="flex flex-wrap gap-1.5" id="sidebar-genres">
-            <!-- Dynamically populated or static fast buttons -->
-            <button onclick="setGenreFilter('Synthwave')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Synthwave</button>
-            <button onclick="setGenreFilter('Chill')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Chill / Lo-Fi</button>
-            <button onclick="setGenreFilter('Electronic')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Electronic</button>
-            <button onclick="setGenreFilter('Pop')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Pop</button>
-            <button onclick="setGenreFilter('Rock')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Rock</button>
-            <button onclick="setGenreFilter('Ambient')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-violet-900/40 text-slate-300 hover:text-white transition">Ambient</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Bottom Card / Mini Player Widget -->
-      <div class="p-4 border-t border-brand-border">
-        <div onclick="toggleNowPlayingModal()" class="cursor-pointer bg-slate-900/90 hover:bg-slate-800/90 border border-brand-border rounded-xl p-3 flex items-center gap-3 transition group">
-          <div id="sidebar-cover-thumb" class="w-11 h-11 rounded-lg overflow-hidden shrink-0 bg-slate-800 flex items-center justify-center">
-            <!-- default cover -->
-            <svg class="w-6 h-6 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0">
-            <h4 id="sidebar-track-title" class="text-xs font-bold text-white truncate group-hover:text-violet-400 transition">Select a song</h4>
-            <p id="sidebar-track-artist" class="text-[11px] text-slate-400 truncate">Ready to stream</p>
-          </div>
-          <div id="sidebar-live-eq" class="flex items-end gap-0.5 h-3.5 hidden">
-            <span class="w-0.5 bg-violet-400 rounded-full eq-bar-1"></span>
-            <span class="w-0.5 bg-cyan-400 rounded-full eq-bar-2"></span>
-            <span class="w-0.5 bg-pink-400 rounded-full eq-bar-3"></span>
-          </div>
-        </div>
-
-        <!-- Keyboard Shortcut Hint Button -->
-        <button onclick="toggleShortcutsModal()" class="mt-3 w-full flex items-center justify-center gap-2 py-1.5 text-[11px] text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 rounded-lg transition">
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
-          </svg>
-          <span>Shortcuts Guide (Press ?)</span>
-        </button>
-      </div>
-    </aside>
-
-    <!-- ==================== MAIN CONTENT AREA ==================== -->
-    <main class="flex-1 flex flex-col overflow-y-auto bg-gradient-to-b from-[#0e1220] to-[#07090e] pb-28 md:pb-24">
-      
-      <!-- Top Sticky Navigation & Search Bar -->
-      <header class="sticky top-0 z-10 backdrop-blur-xl bg-slate-950/70 border-b border-brand-border px-4 md:px-8 py-3.5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        
-        <!-- Left: Search input -->
-        <div class="relative flex-1 max-w-lg">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-          </div>
-          <input 
-            type="text" 
-            id="search-input" 
-            placeholder="Search by title, artist, or genre... (Press / to search)" 
-            class="w-full pl-10 pr-9 py-2 bg-slate-900/90 hover:bg-slate-900 focus:bg-slate-900 border border-slate-800 focus:border-violet-500 rounded-xl text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-violet-500 transition shadow-inner"
-            autocomplete="off"
-          >
-          <button id="clear-search-btn" onclick="clearSearch()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white hidden">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Right: Action Bar (View mode toggle, Random play, Shortcuts) -->
-        <div class="flex items-center justify-between md:justify-end gap-2 shrink-0">
-          <!-- Quick Shuffle Play All button -->
-          <button onclick="playRandomSong()" class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-violet-700/20 active:scale-95 transition">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-            <span>Surprise Me</span>
-          </button>
-
-          <!-- View Mode Toggle (Grid vs List) -->
-          <div class="flex items-center bg-slate-900 p-0.5 rounded-xl border border-slate-800">
-            <button id="view-grid-btn" onclick="setViewMode('grid')" title="Grid View" class="p-1.5 rounded-lg text-white bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-              </svg>
-            </button>
-            <button id="view-list-btn" onclick="setViewMode('list')" title="List View" class="p-1.5 rounded-lg text-slate-400 hover:text-white transition">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
+            <button id="empty-action-btn" onclick="resetFilters()"
+              class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition">
+              Reset Filters
             </button>
           </div>
 
-          <!-- Shortcuts Dialog button on mobile/desktop -->
-          <button onclick="toggleShortcutsModal()" title="Keyboard shortcuts (?)" class="p-2 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-800 rounded-xl border border-slate-800 transition">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </div>
+      </main>
+
+      <!-- ==================== QUEUE SLIDE-OVER DRAWER ==================== -->
+      <aside id="queue-panel"
+        class="fixed top-0 right-0 bottom-32 md:bottom-20 w-80 md:w-96 bg-slate-950/95 border-l border-brand-border backdrop-blur-2xl z-30 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+        <!-- Drawer Header -->
+        <div
+          class="p-4 border-b border-brand-border flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <svg class="w-5 h-5 text-violet-400" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
-          </button>
-        </div>
-      </header>
-
-      <!-- Content Container -->
-      <div class="px-4 md:px-8 py-6 space-y-6">
-
-        <!-- ==================== HERO HIGHLIGHT BANNER ==================== -->
-        <section id="hero-banner" class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-950/70 via-indigo-950/50 to-slate-900/80 border border-violet-800/20 p-6 md:p-8 shadow-2xl">
-          <!-- Background Glow Elements -->
-          <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-violet-600/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div class="absolute right-1/3 -top-10 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          
-          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div class="max-w-xl space-y-3">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs font-semibold">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>CURATED COLLECTION &bull; 16 HI-RES TRACKS</span>
-              </div>
-              <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                Immerse In Pure Sound.
-              </h1>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Stream hand-crafted synthwave, chill beats, electronic pulses, and ambient landscapes. High-fidelity audio with real-time waveform visualizers, instant seeking, and queue control.
-              </p>
-              
-              <div class="pt-2 flex flex-wrap items-center gap-3">
-                <button onclick="playSongByIndex(0)" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-cyan-500 hover:from-violet-400 hover:to-cyan-400 text-slate-950 font-bold text-sm flex items-center gap-2.5 shadow-lg shadow-violet-500/25 active:scale-95 transition">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                  <span>Play Starting Track</span>
-                </button>
-                <button onclick="switchTab('favorites')" class="px-4 py-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700/60 font-semibold text-sm flex items-center gap-2 active:scale-95 transition">
-                  <svg class="w-4 h-4 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                  </svg>
-                  <span>View Favorites</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Hero artwork / quick glance -->
-            <div class="hidden lg:flex items-center gap-3 p-3 bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/5 shadow-xl">
-              <div id="hero-mini-disc" class="w-20 h-20 rounded-full vinyl-grooves relative flex items-center justify-center animate-spin-slow">
-                <div class="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center border-2 border-slate-900">
-                  <div class="w-2 h-2 rounded-full bg-white"></div>
-                </div>
-              </div>
-              <div class="pr-2">
-                <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider">Studio Audio</span>
-                <p class="text-sm font-bold text-white">SoundHelix Edition</p>
-                <p class="text-xs text-slate-400">100% Royalty Free MP3</p>
-              </div>
-            </div>
+            <h3 class="font-bold text-white text-base">Up Next Queue</h3>
+            <span id="queue-panel-count"
+              class="text-xs px-2 py-0.5 rounded-full bg-violet-900/60 text-violet-300 font-semibold">0</span>
           </div>
-        </section>
-
-        <!-- ==================== GENRE FILTER PILLS ==================== -->
-        <section class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <h2 id="section-title" class="text-lg font-bold text-white tracking-tight">All Tracks</h2>
-              <span id="track-count-badge" class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-semibold border border-slate-700">16</span>
-            </div>
-
-            <!-- Active filter indicator -->
-            <span id="active-filter-text" class="text-xs text-slate-400 hidden">
-              Filtered by: <span id="current-filter-name" class="text-violet-400 font-semibold"></span>
-            </span>
+          <div class="flex items-center gap-1">
+            <button onclick="clearQueue()" title="Clear queue"
+              class="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+            <button onclick="toggleQueuePanel()" title="Close queue"
+              class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
+        </div>
 
-          <!-- Genre Buttons Strip -->
-          <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="genre-pills">
-            <button onclick="setGenreFilter('All')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-md shadow-violet-600/20" data-genre="All">All Genres</button>
-            <button onclick="setGenreFilter('Synthwave')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800" data-genre="Synthwave">Synthwave</button>
-            <button onclick="setGenreFilter('Chill')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800" data-genre="Chill">Chill / Lo-Fi</button>
-            <button onclick="setGenreFilter('Electronic')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800" data-genre="Electronic">Electronic</button>
-            <button onclick="setGenreFilter('Pop')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800" data-genre="Pop">Pop</button>
-            <button onclick="setGenreFilter('Rock')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800" data-genre="Rock">Rock</button>
-            <button onclick="setGenreFilter('Ambient')" class="genre-pill shrink-0 px-4 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800" data-genre="Ambient">Ambient</button>
+        <!-- Currently Playing Highlight in Queue -->
+        <div class="p-4 border-b border-brand-border bg-violet-950/20">
+          <p
+            class="text-[10px] font-bold uppercase tracking-wider text-violet-400 mb-2">Now
+            Playing</p>
+          <div id="queue-current-card" class="flex items-center gap-3">
+            <!-- Populated by JS -->
           </div>
-        </section>
-
-        <!-- ==================== SONGS CONTAINER ==================== -->
-        <!-- Grid View Container -->
-        <div id="songs-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-          <!-- Populated by JavaScript -->
         </div>
 
-        <!-- List / Table View Container (Hidden by default) -->
-        <div id="songs-list" class="hidden flex-col gap-2">
-          <!-- Populated by JavaScript -->
-        </div>
-
-        <!-- EMPTY STATE (For no search matches or empty favorites) -->
-        <div id="empty-state" class="hidden flex-col items-center justify-center text-center py-16 px-4 bg-slate-900/30 rounded-2xl border border-dashed border-slate-800 space-y-4">
-          <div class="w-16 h-16 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-500">
-            <svg id="empty-icon" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 id="empty-title" class="text-base font-bold text-white">No songs found</h3>
-            <p id="empty-subtitle" class="text-xs text-slate-400 mt-1 max-w-sm">Try modifying your search or switching genre filters.</p>
-          </div>
-          <button id="empty-action-btn" onclick="resetFilters()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition">
-            Reset Filters
-          </button>
-        </div>
-
-      </div>
-    </main>
-
-    <!-- ==================== QUEUE SLIDE-OVER DRAWER ==================== -->
-    <aside id="queue-panel" class="fixed top-0 right-0 bottom-32 md:bottom-20 w-80 md:w-96 bg-slate-950/95 border-l border-brand-border backdrop-blur-2xl z-30 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
-      <!-- Drawer Header -->
-      <div class="p-4 border-b border-brand-border flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <svg class="w-5 h-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-          </svg>
-          <h3 class="font-bold text-white text-base">Up Next Queue</h3>
-          <span id="queue-panel-count" class="text-xs px-2 py-0.5 rounded-full bg-violet-900/60 text-violet-300 font-semibold">0</span>
-        </div>
-        <div class="flex items-center gap-1">
-          <button onclick="clearQueue()" title="Clear queue" class="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-            </svg>
-          </button>
-          <button onclick="toggleQueuePanel()" title="Close queue" class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Currently Playing Highlight in Queue -->
-      <div class="p-4 border-b border-brand-border bg-violet-950/20">
-        <p class="text-[10px] font-bold uppercase tracking-wider text-violet-400 mb-2">Now Playing</p>
-        <div id="queue-current-card" class="flex items-center gap-3">
+        <!-- Queue Songs List -->
+        <div class="flex-1 overflow-y-auto p-3 space-y-2"
+          id="queue-items-container">
           <!-- Populated by JS -->
         </div>
-      </div>
 
-      <!-- Queue Songs List -->
-      <div class="flex-1 overflow-y-auto p-3 space-y-2" id="queue-items-container">
-        <!-- Populated by JS -->
-      </div>
-      
-      <!-- Queue Footer -->
-      <div class="p-3 border-t border-brand-border bg-slate-900/40 flex items-center justify-between">
-        <button onclick="addRemainingToQueue()" class="text-xs text-violet-400 hover:text-violet-300 font-semibold transition">
-          + Add all library songs
-        </button>
-        <button onclick="shuffleQueue()" class="text-xs text-slate-400 hover:text-white font-medium flex items-center gap-1 transition">
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-          </svg>
-          <span>Shuffle Queue</span>
-        </button>
-      </div>
-    </aside>
+        <!-- Queue Footer -->
+        <div
+          class="p-3 border-t border-brand-border bg-slate-900/40 flex items-center justify-between">
+          <button onclick="addRemainingToQueue()"
+            class="text-xs text-violet-400 hover:text-violet-300 font-semibold transition">
+            + Add all library songs
+          </button>
+          <button onclick="shuffleQueue()"
+            class="text-xs text-slate-400 hover:text-white font-medium flex items-center gap-1 transition">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>Shuffle Queue</span>
+          </button>
+        </div>
+      </aside>
 
-    <!-- ==================== NOW PLAYING FULL MODAL / EXPANDED VIEW ==================== -->
-    <div id="now-playing-modal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col justify-between p-6 md:p-10 transform translate-y-full transition-transform duration-300 ease-out">
-      
-      <!-- Modal Top Bar -->
-      <div class="flex items-center justify-between max-w-4xl w-full mx-auto">
-        <button onclick="toggleNowPlayingModal()" class="flex items-center gap-2 text-slate-400 hover:text-white text-xs font-semibold py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 transition">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-          <span>Minimize</span>
-        </button>
-        
-        <div class="text-center">
-          <span class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold">PLAYING FROM LIBRARY</span>
-          <h4 id="np-modal-playlist-name" class="text-xs font-semibold text-slate-300">All Tracks</h4>
+      <!-- ==================== NOW PLAYING FULL MODAL / EXPANDED VIEW ==================== -->
+      <div id="now-playing-modal"
+        class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col justify-between p-6 md:p-10 transform translate-y-full transition-transform duration-300 ease-out">
+
+        <!-- Modal Top Bar -->
+        <div class="flex items-center justify-between max-w-4xl w-full mx-auto">
+          <button onclick="toggleNowPlayingModal()"
+            class="flex items-center gap-2 text-slate-400 hover:text-white text-xs font-semibold py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 transition">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            <span>Minimize</span>
+          </button>
+
+          <div class="text-center">
+            <span
+              class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold">PLAYING
+              FROM LIBRARY</span>
+            <h4 id="np-modal-playlist-name"
+              class="text-xs font-semibold text-slate-300">All Tracks</h4>
+          </div>
+
+          <button onclick="toggleCurrentFavorite()" id="np-modal-heart-btn"
+            class="p-2 text-slate-400 hover:text-rose-500 rounded-xl bg-slate-900 border border-slate-800 transition">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </button>
         </div>
 
-        <button onclick="toggleCurrentFavorite()" id="np-modal-heart-btn" class="p-2 text-slate-400 hover:text-rose-500 rounded-xl bg-slate-900 border border-slate-800 transition">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-          </svg>
-        </button>
-      </div>
+        <!-- Modal Center: Spinning Vinyl & Album Art + Animated Visualizer -->
+        <div
+          class="flex-1 flex flex-col items-center justify-center max-w-2xl w-full mx-auto py-6">
 
-      <!-- Modal Center: Spinning Vinyl & Album Art + Animated Visualizer -->
-      <div class="flex-1 flex flex-col items-center justify-center max-w-2xl w-full mx-auto py-6">
-        
-        <!-- Vinyl Record & Album Sleeve Composition -->
-        <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center my-auto">
-          
-          <!-- Spinning Vinyl Record (Slides out slightly to the right) -->
-          <div id="np-vinyl-disc" class="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full vinyl-grooves right-0 sm:-right-8 flex items-center justify-center shadow-2xl transition-transform duration-700 animate-spin-slow paused-anim">
-            <!-- Vinyl Sheen Reflection Overlay -->
-            <div class="absolute inset-0 rounded-full vinyl-reflection pointer-events-none"></div>
-            <!-- Center Label on Vinyl -->
-            <div id="np-vinyl-label" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center relative overflow-hidden shadow-inner">
-              <div class="w-4 h-4 rounded-full bg-slate-950 border border-slate-700 z-10"></div>
+          <!-- Vinyl Record & Album Sleeve Composition -->
+          <div
+            class="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center my-auto">
+
+            <!-- Spinning Vinyl Record (Slides out slightly to the right) -->
+            <div id="np-vinyl-disc"
+              class="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full vinyl-grooves right-0 sm:-right-8 flex items-center justify-center shadow-2xl transition-transform duration-700 animate-spin-slow paused-anim">
+              <!-- Vinyl Sheen Reflection Overlay -->
+              <div
+                class="absolute inset-0 rounded-full vinyl-reflection pointer-events-none"></div>
+              <!-- Center Label on Vinyl -->
+              <div id="np-vinyl-label"
+                class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-slate-800 border-4 border-slate-950 flex items-center justify-center relative overflow-hidden shadow-inner">
+                <div
+                  class="w-4 h-4 rounded-full bg-slate-950 border border-slate-700 z-10"></div>
+              </div>
+            </div>
+
+            <!-- Album Sleeve / Cover Card in front -->
+            <div id="np-modal-cover-wrap"
+              class="relative z-10 w-56 h-56 sm:w-72 sm:h-72 rounded-2xl overflow-hidden shadow-2xl border border-white/10 left-0 sm:-left-8 bg-slate-900 flex items-center justify-center transform transition-all duration-300">
+              <img id="np-modal-cover-img" src alt="Album Artwork"
+                class="w-full h-full object-cover">
             </div>
           </div>
 
-          <!-- Album Sleeve / Cover Card in front -->
-          <div id="np-modal-cover-wrap" class="relative z-10 w-56 h-56 sm:w-72 sm:h-72 rounded-2xl overflow-hidden shadow-2xl border border-white/10 left-0 sm:-left-8 bg-slate-900 flex items-center justify-center transform transition-all duration-300">
-            <img id="np-modal-cover-img" src="" alt="Album Artwork" class="w-full h-full object-cover">
+          <!-- Track Info -->
+          <div class="text-center mt-6 space-y-1.5 w-full">
+            <div class="flex items-center justify-center gap-2">
+              <span id="np-modal-genre"
+                class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-violet-900/60 text-violet-300 border border-violet-700/50">Electronic</span>
+            </div>
+            <h2 id="np-modal-title"
+              class="text-xl sm:text-2xl font-black text-white tracking-tight truncate max-w-md mx-auto">No
+              Song Selected</h2>
+            <p id="np-modal-artist"
+              class="text-sm font-medium text-slate-400 truncate max-w-md mx-auto">SoundPulse
+              Player</p>
+          </div>
+
+          <!-- Animated Audio Wave Spectrum Bars -->
+          <div
+            class="w-full max-w-md mt-6 h-12 flex items-end justify-center gap-1 px-4"
+            id="np-wave-visualizer">
+            <!-- 32 animated equalizer bars populated by JS -->
           </div>
         </div>
 
-        <!-- Track Info -->
-        <div class="text-center mt-6 space-y-1.5 w-full">
-          <div class="flex items-center justify-center gap-2">
-            <span id="np-modal-genre" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-violet-900/60 text-violet-300 border border-violet-700/50">Electronic</span>
-          </div>
-          <h2 id="np-modal-title" class="text-xl sm:text-2xl font-black text-white tracking-tight truncate max-w-md mx-auto">No Song Selected</h2>
-          <p id="np-modal-artist" class="text-sm font-medium text-slate-400 truncate max-w-md mx-auto">SoundPulse Player</p>
-        </div>
+        <!-- Modal Bottom: Complete Controls Strip -->
+        <div class="max-w-2xl w-full mx-auto space-y-4">
 
-        <!-- Animated Audio Wave Spectrum Bars -->
-        <div class="w-full max-w-md mt-6 h-12 flex items-end justify-center gap-1 px-4" id="np-wave-visualizer">
-          <!-- 32 animated equalizer bars populated by JS -->
+          <!-- Scrubber Progress Bar -->
+          <div class="space-y-1.5">
+            <div class="relative group cursor-pointer py-2"
+              id="np-modal-progress-container">
+              <div
+                class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden relative">
+                <div id="np-modal-progress-bar"
+                  class="h-full bg-gradient-to-r from-violet-500 to-cyan-400 rounded-full w-0 relative"></div>
+              </div>
+              <!-- Custom invisible click target & drag overlay -->
+              <input type="range" id="np-modal-seek-slider" min="0" max="100"
+                value="0" step="0.1"
+                class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+            </div>
+            <div
+              class="flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span id="np-modal-current-time">0:00</span>
+              <span id="np-modal-duration">0:00</span>
+            </div>
+          </div>
+
+          <!-- Buttons Row: Shuffle, Prev, Play/Pause, Next, Repeat -->
+          <div class="flex items-center justify-center gap-6 sm:gap-8">
+            <button onclick="toggleShuffle()" id="np-modal-shuffle-btn"
+              title="Toggle Shuffle (S)"
+              class="p-2.5 text-slate-400 hover:text-white transition">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+
+            <button onclick="prevSong()" title="Previous (Left Arrow)"
+              class="p-3 text-slate-300 hover:text-white hover:bg-slate-800 rounded-full transition active:scale-90">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+              </svg>
+            </button>
+
+            <button onclick="togglePlayPause()" id="np-modal-play-btn"
+              title="Play/Pause (Space)"
+              class="w-16 h-16 rounded-full bg-gradient-to-tr from-violet-500 to-cyan-400 text-slate-950 flex items-center justify-center shadow-xl shadow-violet-500/30 hover:scale-105 active:scale-95 transition">
+              <svg id="np-modal-play-icon" class="w-7 h-7 fill-current ml-0.5"
+                viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+
+            <button onclick="nextSong()" title="Next (Right Arrow)"
+              class="p-3 text-slate-300 hover:text-white hover:bg-slate-800 rounded-full transition active:scale-90">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+              </svg>
+            </button>
+
+            <button onclick="cycleRepeatMode()" id="np-modal-repeat-btn"
+              title="Cycle Repeat (R)"
+              class="p-2.5 text-slate-400 hover:text-white transition relative">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span id="np-modal-repeat-badge"
+                class="absolute -top-1 -right-1 text-[9px] font-bold bg-violet-600 text-white rounded-full w-3.5 h-3.5 items-center justify-center hidden">1</span>
+            </button>
+          </div>
+
         </div>
       </div>
 
-      <!-- Modal Bottom: Complete Controls Strip -->
-      <div class="max-w-2xl w-full mx-auto space-y-4">
-        
+    </div> <!-- End Main App Container -->
+
+    <!-- ==================== FIXED BOTTOM PLAYER BAR ==================== -->
+    <footer
+      class="fixed bottom-16 md:bottom-0 left-0 right-0 h-16 md:h-20 bg-slate-950/95 border-t border-brand-border backdrop-blur-2xl px-3 md:px-6 flex items-center justify-between z-30 select-none shadow-2xl">
+
+      <!-- Top Progress Line for Mobile Scrubber Indicator -->
+      <div
+        class="md:hidden absolute top-0 left-0 right-0 h-1 bg-slate-800 pointer-events-none">
+        <div id="player-mobile-progress"
+          class="h-full bg-gradient-to-r from-violet-500 to-cyan-400 w-0"></div>
+      </div>
+
+      <!-- LEFT: Currently Playing Song Info -->
+      <div
+        class="flex items-center gap-2.5 md:gap-3 min-w-0 flex-1 md:w-1/3 md:flex-initial md:min-w-[240px]">
+        <div onclick="toggleNowPlayingModal()"
+          class="relative group cursor-pointer w-10 h-10 md:w-14 md:h-14 rounded-xl overflow-hidden shrink-0 bg-slate-900 border border-slate-800 flex items-center justify-center shadow-md">
+          <img id="player-cover-img" src alt="Album Artwork"
+            class="w-full h-full object-cover">
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+            <svg class="w-4 h-4 md:w-5 md:h-5 text-white" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="min-w-0 flex-1 cursor-pointer"
+          onclick="toggleNowPlayingModal()">
+          <h4 id="player-title"
+            class="text-xs md:text-sm font-bold text-white truncate hover:text-violet-400 transition">Select
+            a song</h4>
+          <p id="player-artist"
+            class="text-[10px] md:text-xs text-slate-400 truncate">SoundPulse</p>
+        </div>
+
+        <!-- Favorite Heart Toggle on Bar (Desktop) -->
+        <button onclick="toggleCurrentFavorite()" id="player-heart-btn"
+          title="Like song (L)"
+          class="hidden sm:block p-2 text-slate-400 hover:text-rose-500 transition active:scale-90">
+          <svg id="player-heart-icon" class="w-4 h-4 md:w-5 md:h-5" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- CENTER: Desktop Playback Controls & Progress Bar -->
+      <div
+        class="hidden md:flex flex-col items-center justify-center flex-1 max-w-xl px-2 md:px-6">
+
+        <!-- Button Controls -->
+        <div class="flex items-center gap-3 md:gap-5 mb-1.5">
+          <!-- Shuffle Toggle -->
+          <button onclick="toggleShuffle()" id="player-shuffle-btn"
+            title="Toggle Shuffle (S)"
+            class="p-1.5 text-slate-400 hover:text-white transition">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+
+          <!-- Previous Track -->
+          <button onclick="prevSong()" title="Previous (Left Arrow)"
+            class="p-1.5 text-slate-300 hover:text-white transition active:scale-90">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+            </svg>
+          </button>
+
+          <!-- Main Play/Pause Button -->
+          <button onclick="togglePlayPause()" id="player-play-btn"
+            title="Play/Pause (Space)"
+            class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 hover:from-violet-400 hover:to-cyan-300 text-slate-950 flex items-center justify-center shadow-lg shadow-violet-500/25 active:scale-95 transition">
+            <svg id="player-play-icon" class="w-5 h-5 fill-current ml-0.5"
+              viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+
+          <!-- Next Track -->
+          <button onclick="nextSong()" title="Next (Right Arrow)"
+            class="p-1.5 text-slate-300 hover:text-white transition active:scale-90">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+            </svg>
+          </button>
+
+          <!-- Repeat Mode Cycle -->
+          <button onclick="cycleRepeatMode()" id="player-repeat-btn"
+            title="Cycle Repeat (R)"
+            class="p-1.5 text-slate-400 hover:text-white transition relative">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span id="player-repeat-badge"
+              class="absolute -top-1 -right-1 text-[8px] font-bold bg-violet-600 text-white rounded-full w-3.5 h-3.5 items-center justify-center hidden">1</span>
+          </button>
+        </div>
+
         <!-- Scrubber Progress Bar -->
-        <div class="space-y-1.5">
-          <div class="relative group cursor-pointer py-2" id="np-modal-progress-container">
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden relative">
-              <div id="np-modal-progress-bar" class="h-full bg-gradient-to-r from-violet-500 to-cyan-400 rounded-full w-0 relative"></div>
+        <div
+          class="w-full flex items-center gap-2 text-[11px] font-mono text-slate-400">
+          <span id="player-current-time" class="w-9 text-right">0:00</span>
+
+          <!-- Scrubber interactive bar -->
+          <div class="relative flex-1 group cursor-pointer py-1.5"
+            id="progress-bar-container">
+            <div
+              class="w-full h-1 bg-slate-800 group-hover:h-1.5 rounded-full overflow-hidden transition-all">
+              <div id="player-progress-bar"
+                class="h-full bg-gradient-to-r from-violet-500 to-cyan-400 rounded-full w-0"></div>
             </div>
-            <!-- Custom invisible click target & drag overlay -->
-            <input type="range" id="np-modal-seek-slider" min="0" max="100" value="0" step="0.1" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+            <!-- Seek slider element for click and drag -->
+            <input type="range" id="seek-slider" min="0" max="100" value="0"
+              step="0.1"
+              class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
           </div>
-          <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
-            <span id="np-modal-current-time">0:00</span>
-            <span id="np-modal-duration">0:00</span>
-          </div>
-        </div>
 
-        <!-- Buttons Row: Shuffle, Prev, Play/Pause, Next, Repeat -->
-        <div class="flex items-center justify-center gap-6 sm:gap-8">
-          <button onclick="toggleShuffle()" id="np-modal-shuffle-btn" title="Toggle Shuffle (S)" class="p-2.5 text-slate-400 hover:text-white transition">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-          </button>
-
-          <button onclick="prevSong()" title="Previous (Left Arrow)" class="p-3 text-slate-300 hover:text-white hover:bg-slate-800 rounded-full transition active:scale-90">
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
-            </svg>
-          </button>
-
-          <button onclick="togglePlayPause()" id="np-modal-play-btn" title="Play/Pause (Space)" class="w-16 h-16 rounded-full bg-gradient-to-tr from-violet-500 to-cyan-400 text-slate-950 flex items-center justify-center shadow-xl shadow-violet-500/30 hover:scale-105 active:scale-95 transition">
-            <svg id="np-modal-play-icon" class="w-7 h-7 fill-current ml-0.5" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </button>
-
-          <button onclick="nextSong()" title="Next (Right Arrow)" class="p-3 text-slate-300 hover:text-white hover:bg-slate-800 rounded-full transition active:scale-90">
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-            </svg>
-          </button>
-
-          <button onclick="cycleRepeatMode()" id="np-modal-repeat-btn" title="Cycle Repeat (R)" class="p-2.5 text-slate-400 hover:text-white transition relative">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-            <span id="np-modal-repeat-badge" class="absolute -top-1 -right-1 text-[9px] font-bold bg-violet-600 text-white rounded-full w-3.5 h-3.5 items-center justify-center hidden">1</span>
-          </button>
+          <span id="player-duration" class="w-9">0:00</span>
         </div>
 
       </div>
-    </div>
 
-  </div> <!-- End Main App Container -->
-
-  <!-- ==================== FIXED BOTTOM PLAYER BAR ==================== -->
-  <footer class="fixed bottom-16 md:bottom-0 left-0 right-0 h-16 md:h-20 bg-slate-950/95 border-t border-brand-border backdrop-blur-2xl px-3 md:px-6 flex items-center justify-between z-30 select-none shadow-2xl">
-    
-    <!-- Top Progress Line for Mobile Scrubber Indicator -->
-    <div class="md:hidden absolute top-0 left-0 right-0 h-1 bg-slate-800 pointer-events-none">
-      <div id="player-mobile-progress" class="h-full bg-gradient-to-r from-violet-500 to-cyan-400 w-0"></div>
-    </div>
-
-    <!-- LEFT: Currently Playing Song Info -->
-    <div class="flex items-center gap-2.5 md:gap-3 min-w-0 flex-1 md:w-1/3 md:flex-initial md:min-w-[240px]">
-      <div onclick="toggleNowPlayingModal()" class="relative group cursor-pointer w-10 h-10 md:w-14 md:h-14 rounded-xl overflow-hidden shrink-0 bg-slate-900 border border-slate-800 flex items-center justify-center shadow-md">
-        <img id="player-cover-img" src="" alt="Album Artwork" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-          <svg class="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="min-w-0 flex-1 cursor-pointer" onclick="toggleNowPlayingModal()">
-        <h4 id="player-title" class="text-xs md:text-sm font-bold text-white truncate hover:text-violet-400 transition">Select a song</h4>
-        <p id="player-artist" class="text-[10px] md:text-xs text-slate-400 truncate">SoundPulse</p>
-      </div>
-
-      <!-- Favorite Heart Toggle on Bar (Desktop) -->
-      <button onclick="toggleCurrentFavorite()" id="player-heart-btn" title="Like song (L)" class="hidden sm:block p-2 text-slate-400 hover:text-rose-500 transition active:scale-90">
-        <svg id="player-heart-icon" class="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-        </svg>
-      </button>
-    </div>
-
-    <!-- CENTER: Desktop Playback Controls & Progress Bar -->
-    <div class="hidden md:flex flex-col items-center justify-center flex-1 max-w-xl px-2 md:px-6">
-      
-      <!-- Button Controls -->
-      <div class="flex items-center gap-3 md:gap-5 mb-1.5">
-        <!-- Shuffle Toggle -->
-        <button onclick="toggleShuffle()" id="player-shuffle-btn" title="Toggle Shuffle (S)" class="p-1.5 text-slate-400 hover:text-white transition">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+      <!-- MOBILE CONTROLS (Right side on mobile) -->
+      <div class="flex md:hidden items-center gap-1 shrink-0">
+        <button onclick="toggleCurrentFavorite()"
+          class="p-2 text-slate-400 hover:text-rose-500 transition">
+          <svg id="player-mobile-heart-icon" class="w-4 h-4" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </button>
 
-        <!-- Previous Track -->
-        <button onclick="prevSong()" title="Previous (Left Arrow)" class="p-1.5 text-slate-300 hover:text-white transition active:scale-90">
+        <button onclick="togglePlayPause()" id="player-mobile-play-btn"
+          class="w-9 h-9 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 text-slate-950 flex items-center justify-center shadow-md active:scale-95 transition">
+          <svg id="player-mobile-play-icon" class="w-4 h-4 fill-current ml-0.5"
+            viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+
+        <button onclick="nextSong()"
+          class="p-2 text-slate-300 hover:text-white transition active:scale-90">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
           </svg>
-        </button>
-
-        <!-- Main Play/Pause Button -->
-        <button onclick="togglePlayPause()" id="player-play-btn" title="Play/Pause (Space)" class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 hover:from-violet-400 hover:to-cyan-300 text-slate-950 flex items-center justify-center shadow-lg shadow-violet-500/25 active:scale-95 transition">
-          <svg id="player-play-icon" class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </button>
-
-        <!-- Next Track -->
-        <button onclick="nextSong()" title="Next (Right Arrow)" class="p-1.5 text-slate-300 hover:text-white transition active:scale-90">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-          </svg>
-        </button>
-
-        <!-- Repeat Mode Cycle -->
-        <button onclick="cycleRepeatMode()" id="player-repeat-btn" title="Cycle Repeat (R)" class="p-1.5 text-slate-400 hover:text-white transition relative">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-          </svg>
-          <span id="player-repeat-badge" class="absolute -top-1 -right-1 text-[8px] font-bold bg-violet-600 text-white rounded-full w-3.5 h-3.5 items-center justify-center hidden">1</span>
         </button>
       </div>
 
-      <!-- Scrubber Progress Bar -->
-      <div class="w-full flex items-center gap-2 text-[11px] font-mono text-slate-400">
-        <span id="player-current-time" class="w-9 text-right">0:00</span>
-        
-        <!-- Scrubber interactive bar -->
-        <div class="relative flex-1 group cursor-pointer py-1.5" id="progress-bar-container">
-          <div class="w-full h-1 bg-slate-800 group-hover:h-1.5 rounded-full overflow-hidden transition-all">
-            <div id="player-progress-bar" class="h-full bg-gradient-to-r from-violet-500 to-cyan-400 rounded-full w-0"></div>
-          </div>
-          <!-- Seek slider element for click and drag -->
-          <input type="range" id="seek-slider" min="0" max="100" value="0" step="0.1" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
-        </div>
+      <!-- RIGHT: Desktop Volume Controls, Queue & Expand Now Playing -->
+      <div
+        class="hidden md:flex items-center justify-end gap-2 md:gap-3 w-1/3 min-w-[200px]">
 
-        <span id="player-duration" class="w-9">0:00</span>
-      </div>
-
-    </div>
-
-    <!-- MOBILE CONTROLS (Right side on mobile) -->
-    <div class="flex md:hidden items-center gap-1 shrink-0">
-      <button onclick="toggleCurrentFavorite()" class="p-2 text-slate-400 hover:text-rose-500 transition">
-        <svg id="player-mobile-heart-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-        </svg>
-      </button>
-
-      <button onclick="togglePlayPause()" id="player-mobile-play-btn" class="w-9 h-9 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 text-slate-950 flex items-center justify-center shadow-md active:scale-95 transition">
-        <svg id="player-mobile-play-icon" class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-      </button>
-
-      <button onclick="nextSong()" class="p-2 text-slate-300 hover:text-white transition active:scale-90">
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-        </svg>
-      </button>
-    </div>
-
-    <!-- RIGHT: Desktop Volume Controls, Queue & Expand Now Playing -->
-    <div class="hidden md:flex items-center justify-end gap-2 md:gap-3 w-1/3 min-w-[200px]">
-      
-      <!-- Open Now Playing Drawer/Modal -->
-      <button onclick="toggleNowPlayingModal()" title="Expand Now Playing" class="p-2 text-slate-400 hover:text-white hover:bg-slate-900 rounded-xl transition">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-        </svg>
-      </button>
-
-      <!-- Queue Button with Badge -->
-      <button onclick="toggleQueuePanel()" title="View Queue" class="p-2 text-slate-400 hover:text-white hover:bg-slate-900 rounded-xl transition relative">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-        </svg>
-        <span id="player-queue-badge" class="absolute top-1 right-1 w-2 h-2 rounded-full bg-violet-500 hidden"></span>
-      </button>
-
-      <!-- Volume Controls (Mute + Slider) -->
-      <div class="flex items-center gap-2">
-        <button onclick="toggleMute()" id="player-volume-btn" title="Mute/Unmute (M)" class="p-1.5 text-slate-400 hover:text-white transition">
-          <svg id="volume-icon-high" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+        <!-- Open Now Playing Drawer/Modal -->
+        <button onclick="toggleNowPlayingModal()" title="Expand Now Playing"
+          class="p-2 text-slate-400 hover:text-white hover:bg-slate-900 rounded-xl transition">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
           </svg>
         </button>
-        
-        <div class="w-20 md:w-24 flex items-center">
-          <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8" class="w-full h-1 bg-slate-800 rounded-lg cursor-pointer" title="Volume slider (Arrow Up / Down)">
-        </div>
-      </div>
 
-    </div>
+        <!-- Queue Button with Badge -->
+        <button onclick="toggleQueuePanel()" title="View Queue"
+          class="p-2 text-slate-400 hover:text-white hover:bg-slate-900 rounded-xl transition relative">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+          <span id="player-queue-badge"
+            class="absolute top-1 right-1 w-2 h-2 rounded-full bg-violet-500 hidden"></span>
+        </button>
 
-  </footer>
-
-  <!-- ==================== MOBILE BOTTOM NAVIGATION ==================== -->
-  <div class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-slate-950/95 border-t border-brand-border flex items-center justify-around z-40">
-    <button onclick="switchTab('home')" class="mobile-nav-btn flex flex-col items-center text-violet-400 text-[10px] font-semibold gap-1">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-      </svg>
-      <span>Home</span>
-    </button>
-    <button onclick="focusSearch()" class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-      </svg>
-      <span>Search</span>
-    </button>
-    <button onclick="switchTab('favorites')" class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-      </svg>
-      <span>Favorites</span>
-    </button>
-    <button onclick="toggleQueuePanel()" class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-      </svg>
-      <span>Queue</span>
-    </button>
-    <button onclick="toggleNowPlayingModal()" class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <span>Playing</span>
-    </button>
-  </div>
-
-  <!-- ==================== KEYBOARD SHORTCUTS MODAL ==================== -->
-  <div id="shortcuts-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-violet-600/20 text-violet-400 flex items-center justify-center">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+        <!-- Volume Controls (Mute + Slider) -->
+        <div class="flex items-center gap-2">
+          <button onclick="toggleMute()" id="player-volume-btn"
+            title="Mute/Unmute (M)"
+            class="p-1.5 text-slate-400 hover:text-white transition">
+            <svg id="volume-icon-high" class="w-4 h-4" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
             </svg>
-          </div>
-          <h3 class="font-bold text-white text-base">Keyboard Shortcuts</h3>
-        </div>
-        <button onclick="toggleShortcutsModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
+          </button>
 
-      <div class="space-y-2.5 text-xs">
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Play / Pause</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">Space</kbd>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Previous Song</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">&larr; Left Arrow</kbd>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Next Song</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">&rarr; Right Arrow</kbd>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Volume Up / Down</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">&uarr; / &darr; Arrow</kbd>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Mute / Unmute</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">M</kbd>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Toggle Favorite</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">L</kbd>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-          <span class="text-slate-300">Shuffle / Repeat</span>
-          <div class="flex gap-1.5">
-            <kbd class="px-2 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">S</kbd>
-            <kbd class="px-2 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">R</kbd>
+          <div class="w-20 md:w-24 flex items-center">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01"
+              value="0.8"
+              class="w-full h-1 bg-slate-800 rounded-lg cursor-pointer"
+              title="Volume slider (Arrow Up / Down)">
           </div>
         </div>
-        <div class="flex items-center justify-between py-1.5">
-          <span class="text-slate-300">Focus Search Bar</span>
-          <kbd class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">/</kbd>
-        </div>
+
       </div>
 
-      <div class="pt-2">
-        <button onclick="toggleShortcutsModal()" class="w-full py-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl text-xs transition">
-          Got it
-        </button>
+    </footer>
+
+    <!-- ==================== MOBILE BOTTOM NAVIGATION ==================== -->
+    <div
+      class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-slate-950/95 border-t border-brand-border flex items-center justify-around z-40">
+      <button onclick="switchTab('home')"
+        class="mobile-nav-btn flex flex-col items-center text-violet-400 text-[10px] font-semibold gap-1">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span>Home</span>
+      </button>
+      <button onclick="focusSearch()"
+        class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span>Search</span>
+      </button>
+      <button onclick="switchTab('favorites')"
+        class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+        <span>Favorites</span>
+      </button>
+      <button onclick="toggleQueuePanel()"
+        class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+        </svg>
+        <span>Queue</span>
+      </button>
+      <button onclick="toggleNowPlayingModal()"
+        class="mobile-nav-btn flex flex-col items-center text-slate-400 text-[10px] font-medium gap-1">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Playing</span>
+      </button>
+    </div>
+
+    <!-- ==================== KEYBOARD SHORTCUTS MODAL ==================== -->
+    <div id="shortcuts-modal"
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+      <div
+        class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+        <div
+          class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-2.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-violet-600/20 text-violet-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-white text-base">Keyboard Shortcuts</h3>
+          </div>
+          <button onclick="toggleShortcutsModal()"
+            class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="space-y-2.5 text-xs">
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Play / Pause</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">Space</kbd>
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Previous Song</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">&larr;
+              Left Arrow</kbd>
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Next Song</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">&rarr;
+              Right Arrow</kbd>
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Volume Up / Down</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">&uarr;
+              / &darr; Arrow</kbd>
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Mute / Unmute</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">M</kbd>
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Toggle Favorite</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">L</kbd>
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 border-b border-slate-800/60">
+            <span class="text-slate-300">Shuffle / Repeat</span>
+            <div class="flex gap-1.5">
+              <kbd
+                class="px-2 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">S</kbd>
+              <kbd
+                class="px-2 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">R</kbd>
+            </div>
+          </div>
+          <div class="flex items-center justify-between py-1.5">
+            <span class="text-slate-300">Focus Search Bar</span>
+            <kbd
+              class="px-2.5 py-1 bg-slate-800 text-violet-400 font-mono rounded-md border border-slate-700">/</kbd>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button onclick="toggleShortcutsModal()"
+            class="w-full py-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl text-xs transition">
+            Got it
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="/src/js/script.js"></script>
-</body>
+    <script src="/src/js/script.js"></script>
+  </body>
 </html>

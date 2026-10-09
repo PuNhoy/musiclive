@@ -178,48 +178,48 @@
       },
       {
         id: 5,
-        title: "Urban Echoes",
-        artist: "Subterranean",
-        genre: "Rock",
+        title: "មេឃអើយជួយផង",
+        artist: "សាមុត+សុទ្ធា",
+        genre: "Pop",
         duration: "5:53",
         seconds: 353,
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+        src: "/src/audio/មេឃអើយជួយផង   សាមុត+សុទ្ធា   Mek Euy Chuoy Phang   Sinn Sisamouth.mp3"
       },
       {
         id: 6,
-        title: "Deep Cosmos",
-        artist: "Aetheria",
-        genre: "Ambient",
+        title: "សន្យា (Sanya) | Doung Virakseth",
+        artist: "Doung Virakseth",
+        genre: "Pop",
         duration: "6:38",
         seconds: 398,
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+        src: "/src/audio/សន្យា.mp3"
       },
       {
         id: 7,
-        title: "Retro Boulevard",
-        artist: "Sunset Drive",
-        genre: "Synthwave",
+        title: "បើបងមានអ្នកថ្មីអូនសប្បាយចិត្តទេ x__SengRmx__VIP2K25",
+        artist: "SengRmx",
+        genre: "Pop",
         duration: "6:01",
         seconds: 361,
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+        src: "/src/audio/បើបងមានអ្នកថ្មីអូនសប្បាយចិត្តទេ x__SengRmx__VIP2K25.mp3"
       },
       {
         id: 8,
-        title: "Coffee & Clouds",
-        artist: "Lo-Fi Sunday",
+        title: "មួយអាទិត្យ7ថ្ងៃ Every day hurts (feat.Mina) [Official MV]",
+        artist: "Suly Pheng",
         genre: "Chill",
         duration: "5:12",
         seconds: 312,
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+        src: "/src/audio/Suly Pheng - មួយអាទិត្យ7ថ្ងៃ Every day hurts (feat.Mina) [Official MV].mp3"
       },
       {
         id: 9,
-        title: "Cybernetic Dreams",
-        artist: "Neurobyte",
-        genre: "Electronic",
+        title: "រាប់ ១ ២ ៣ ហាមយំ  Lyrics ｜ Pipo Chhouk",
+        artist: "Pipo Chhouk",
+        genre: "Pop",
         duration: "6:18",
         seconds: 378,
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+        src: "/src/audio/រាប់ ១ ២ ៣ ហាមយំ  Lyrics ｜ Pipo Chhouk.mp3"
       },
       {
         id: 10,
@@ -276,6 +276,24 @@
         src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"
       },
       {
+        id: 16,
+        title: "Astral Traveler",
+        artist: "Nebula Dreams",
+        genre: "Ambient",
+        duration: "6:50",
+        seconds: 410,
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
+      },
+        {
+        id: 17,
+        title: "Astral Traveler",
+        artist: "Nebula Dreams",
+        genre: "Ambient",
+        duration: "6:50",
+        seconds: 410,
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
+      },
+        {
         id: 16,
         title: "Astral Traveler",
         artist: "Nebula Dreams",
