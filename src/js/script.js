@@ -252,7 +252,7 @@ const SONGS_DATA = [
     genre: "Pop",
     duration: "5:36",
     seconds: 336,
-    cover: "./src/assets/image/10.jpg",
+    cover: "./src/assets/image/love.jpg",
     src: "./src/audio/All3rgy & Chan Sreykhouch - រៀនចប់ (Love's Certificate) [Official Music Video].mp3"
   },
   {
@@ -282,8 +282,8 @@ const SONGS_DATA = [
     title: "គ្មានផ្លូវ Full guitar cover",
     artist: "Chhorn Puthirith",
     genre: "Pop",
-    duration: "6:50",
-    seconds: 410,
+    duration: "3:33",
+    seconds: 213,
     cover: "./src/assets/image/khenplov.jpg",
     src: "./src/audio/គ្មានផ្លូវ Full guitar cover.mp3"
   },
@@ -292,12 +292,42 @@ const SONGS_DATA = [
     title: "DJ NEVADA X BILANG PADA TUHANMU STYLE KONDANG - FELIK FVNKY - SLOWED ....",
     artist: "FELIK FVNKY",
     genre: "Pop",
-    duration: "6:50",
-    seconds: 410,
-    cover: "./src/assets/image/khenplov.jpg",
+    duration: "4:52",
+    seconds: 292,
+    cover: "./src/assets/image/djz.jpg",
     video: "./src/assets/video/DJ NEVADA X BILANG PADA TUHANMU STYLE KONDANG - FELIK FVNKY - SLOWED ....mp4",
     src: "./src/audio/DJ NEVADA X BILANG PADA TUHANMU STYLE KONDANG - FELIK FVNKY - SLOWED ....mp3"
-  }
+  },
+    {
+    id: 18,
+    title: "Anak Kampung - remix Slowed",
+    artist: "Alex Rudiart",
+    genre: "Pop",
+    duration: "8:52",
+    seconds: 532,
+    cover: "./src/assets/image/girldjz.jpg",
+    src: "./src/audio/Anak Kampung - remix Slowed.mp3"
+  },
+      {
+    id: 19,
+    title: "MONTAGEM ALQUIMIA - remix Slowed",
+    artist: "MONTAGEM ALQUIMIA",
+    genre: "Pop",
+    duration: "4:27",
+    seconds: 267,
+    cover: "./src/assets/image/montagem.jpg",
+    src: "./src/audio/MONTAGEM ALQUIMIA.mp3"
+  },
+        {
+    id: 20,
+    title: "រឿងនិទាន",
+    artist: "ដួង វីរៈសិទ្ធ",
+    genre: "Pop",
+    duration: "4:55",
+    seconds: 295,
+    cover: "./src/assets/image/tellingstory.jpg",
+    src: "./src/audio/រឿងនិទាន-ដួង វីរៈសិទ្ធ.mp3"
+  },
 ];
 
 /* ==========================================================================
