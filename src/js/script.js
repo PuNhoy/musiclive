@@ -318,7 +318,7 @@ const SONGS_DATA = [
     cover: "./src/assets/image/montagem.jpg",
     src: "./src/audio/MONTAGEM ALQUIMIA.mp3"
   },
-        {
+      {
     id: 20,
     title: "រឿងនិទាន",
     artist: "ដួង វីរៈសិទ្ធ",
@@ -328,6 +328,18 @@ const SONGS_DATA = [
     cover: "./src/assets/image/tellingstory.jpg",
     src: "./src/audio/រឿងនិទាន-ដួង វីរៈសិទ្ធ.mp3"
   },
+  {
+    id:21,
+    title: "UdieNnx - STRUCT (Slowed + Extended)",
+    artist: "UdieNnx",
+    genre: "Pop",
+    duration: "4:30",
+    seconds: 270,
+    cover: "./src/assets/image/stuct.jpg",
+    video: "./src/assets/video/live wallpaper.mp4",
+    src: "./src/audio/UdieNnx - STRUCT (Slowed + Extended).mp3"
+  }
+
 ];
 
 /* ==========================================================================
